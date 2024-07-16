@@ -1,7 +1,7 @@
 
 import { useReducer } from 'react'
 import './App.css'
-import { countAtom } from './store/atoms/count'
+import { countAtom,evenSelector } from './store/atoms/count'
 import { RecoilRoot, useRecoilState,useRecoilValue} from "recoil"
 
 function App() {
@@ -17,10 +17,12 @@ function App() {
   )
 }
 function Count(){
+   const count  = useRecoilValue(countAtom)
   return (
     <>
     <Display />
     <Button />
+   
     </>
   )
 
@@ -30,7 +32,18 @@ function Display(){
   return (
     <>
     count:{count}
+    <RenderEven/>
     </>
+  )
+}
+function RenderEven(){
+  
+  const isEven = useRecoilValue(evenSelector)
+  return (
+    <>
+    {isEven ? null :"even number "}
+    </>
+    
   )
 }
 function Button(){
